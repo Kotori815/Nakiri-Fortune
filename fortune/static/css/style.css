@@ -1,0 +1,48 @@
+body {
+    background-color: #ffe8e8;
+    text-align: center;
+}
+
+.stripe {
+    height: 5%;
+    width: 100%;
+    background: #ff9595;
+    position: fixed;
+    left: 0;
+    z-index: 100;
+}
+
+.top {
+    top: 0;
+}
+
+.bottom {
+    bottom: 0;
+}
+
+.main-div {
+    margin-left: auto; margin-right: auto;
+    margin-top: 10; margin-bottom: 10;
+    max-width: 50vh;
+}
+
+#banner {
+    width: 60%;
+}
+
+#outImg {
+    width: 70%;
+    border: 1px solid #ff476c;
+}
+#outImg::before{padding-left: 100%; display: block;}
+
+#sub-btn {
+    width: 150px;
+    height: 50;
+    background-color: #ff476c;
+    color: white;
+    padding: auto;
+    display:inline-block;
+    font-size: 20pt;
+}
+#sub-btn::before{padding-top: 30%; display: block;}
