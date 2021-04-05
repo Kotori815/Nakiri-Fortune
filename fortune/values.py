@@ -1,4 +1,6 @@
-RES_FOLDER = "resource"
+import os
+
+RES_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "res")
 BACK_FOLDER = "backgrounds"
 PANEL_IMG = "panel.png"
 

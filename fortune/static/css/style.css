@@ -31,14 +31,18 @@ body {
 }
 
 #outImg {
-    width: 70%;
+    width: 60%;
     border: 1px solid #ff476c;
 }
-#outImg::before{padding-left: 100%; display: block;}
+#outImg::before{padding-left: 125%; display: block;}
+
+.promt-label {
+    font: 18pt bold;
+}
 
 #sub-btn {
     width: 150px;
-    height: 50;
+    height: 50px;
     background-color: #ff476c;
     color: white;
     padding: auto;
@@ -46,3 +50,9 @@ body {
     font-size: 20pt;
 }
 #sub-btn::before{padding-top: 30%; display: block;}
+
+#name-input {
+    font-size: 20pt; 
+    width: 150pt; 
+    text-align: center;
+}
