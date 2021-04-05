@@ -2,6 +2,7 @@
     <meta charset="utf-8">
     <title>Nakiri Fortune</title>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 </html>
 <body>
     <div class="stripe top"></div>
@@ -14,11 +15,27 @@
     </div>
     <br>
     <div class="main-div">
-        <form action="/generate" method="POST">
+        <div>
             <label class="promt-label">你的名字</label><br><br>
-            <input type="" name="name" id="name-input" size="7" maxlength="7" required><br><br>
-            <input type="submit" id='sub-btn' value='今日运势'>
-        </form>
+            <input type="" name="name" id="name-input" size="7" maxlength="7"><br><br>
+            <input type="button" id='sub-btn' value='今日运势' onclick="submit()">
+        </div>
+        <script>function submit(){
+            var name = $("#name-input").val();
+            $.ajax({
+                type: "POST",
+                url: "/generate",
+                dataType: "json",
+                data: {
+                    "name": name
+                },
+                success: (result => {
+                    console.log(result.message);
+                    document.getElementById("outImg").src = result.imgUrl;
+                })
+            })
+
+        }</script>
     </div>
 
     <div class="stripe bottom"></div>
