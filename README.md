@@ -5,11 +5,13 @@
 A web application that randomly generates a fortune-telling image wih a theme based on [Nakiri Ayame][https://www.youtube.com/channel/UC7fk0CB07ly8oSl0aqKkqFg] the Vtuber (she is really cute). 
 
 - Finished:
-    - Webpage
-- Working on:
-    - Image module
-    - Back-end structure
-- To do:
+    - Webpage design
     - API
+    - Back-end structure
+- Working on:
+    - Web script to show image 
+    - Image module (dependent on design)
+- To do:
+    - create a sh file for flask run
     - Art resource collection
     - Fortune-card design
