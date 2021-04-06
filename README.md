@@ -9,6 +9,7 @@ A web application that randomly generates a fortune-telling image wih a theme ba
 - Finished:
     - Fore/back-end structure
 - Working on:
+    - deployment on vercel
     - Image module (dependent on design)
 - To do:
     - Art resource collection

@@ -5,12 +5,12 @@
             "src": "fortune/*.py",
             "use": "@vercel/python"
         },
-		{
-            "src": "fortune/static/*/*",
+        {
+            "src": "fortune/templates/*",
             "use": "@vercel/static"
         },
-		{
-            "src": "fortune/templates/*",
+        {
+            "src": "fortune/static/*/*",
             "use": "@vercel/static"
         }
     ],
@@ -19,9 +19,9 @@
             "src": "/",
             "dest": "/fortune/templates/index.html"
         },
-		{
-			"src": "/generate",
-			"dest": "/fortune/__init__.py"
-		}
+        {
+            "src": "/generate",
+            "dest": "/fortune/__init__.py"
+        }
     ]
 }
