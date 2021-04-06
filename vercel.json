@@ -1,5 +1,5 @@
 {
-    "version": 0,
+    "version": 2,
     "builds": [
         {
             "src": "fortune/*.py",
@@ -16,8 +16,8 @@
     ],
     "routes": [
         {
-            "src": "/fortune/templates/index.html",
-            "dest": "/"
+            "src": "/",
+            "dest": "/fortune/templates/index.html"
         },
 		{
 			"src": "/generate",
@@ -25,7 +25,7 @@
 		},
 		{
 			"src": "/(.*)",
-			"dest": "/"
+			"dest": "/fortune/templates/index.html"
 		}
     ]
 }
