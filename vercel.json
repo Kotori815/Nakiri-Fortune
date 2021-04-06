@@ -22,10 +22,6 @@
 		{
 			"src": "/generate",
 			"dest": "/fortune/__init__.py"
-		},
-		{
-			"src": "/(.*)",
-			"dest": "/fortune/templates/index.html"
 		}
     ]
 }
