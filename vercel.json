@@ -16,12 +16,12 @@
     ],
     "routes": [
         {
-            "src": "/",
+            "src": "/fortune/templates/index.html",
             "dest": "/"
         },
 		{
 			"src": "/generate",
-			"dest": "/generate"
+			"dest": "/fortune/__init__.py"
 		},
 		{
 			"src": "/(.*)",
