@@ -1,0 +1,31 @@
+{
+    "version": 0,
+    "builds": [
+        {
+            "src": "fortune/*.py",
+            "use": "@vercel/python"
+        },
+		{
+            "src": "fortune/static/*/*",
+            "use": "@vercel/static"
+        },
+		{
+            "src": "fortune/templates/*",
+            "use": "@vercel/static"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/",
+            "dest": "/"
+        },
+		{
+			"src": "/generate",
+			"dest": "/generate"
+		},
+		{
+			"src": "/(.*)",
+			"dest": "/"
+		}
+    ]
+}

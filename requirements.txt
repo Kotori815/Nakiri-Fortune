@@ -1,0 +1,4 @@
+python==3.6.12
+Flask==1.1.2
+pillow==8.1.2
+numpy==1.19.2
