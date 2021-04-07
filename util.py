@@ -2,7 +2,16 @@ from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import json, os, random, io, base64
 
-from fortune.values import *
+RES_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "res")
+BACK_FOLDER = "backgrounds"
+PANEL_IMG = "panel.png"
+
+FORTUNE_FILE = "fortune.json"
+TEXT_FILE = "text.json"
+
+FONT_NAME = "ZhanKuKuaiLeTi2016XiuDingBan.ttf"
+FONT_SIZE = 28
+FONT_COLOR = (0, 0, 0)
 
 def readJson(file):
     filename = os.path.join(RES_FOLDER, file)
@@ -47,14 +56,14 @@ def drawImage(result):
     text = "\n".join([result['name']] + result["content"].split())
     draw.multiline_text((10,10), text, font=fnt, fill=FONT_COLOR)
 
-    new.save("E:/temp/a.png")
     return new
 
 def calculateBox(result):
+    """
     sentences = result['content'].split()
     lineNum = len(sentences) + 1
     columnNum = max([len(string) for string in sentences])
-
+    """
     return (75, 50, 225, 350)
 
 def PILImage2Base64(image):

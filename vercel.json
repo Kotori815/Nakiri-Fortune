@@ -2,26 +2,26 @@
     "version": 2,
     "builds": [
         {
-            "src": "fortune/*.py",
+            "src": "*.py",
             "use": "@vercel/python"
         },
         {
-            "src": "fortune/templates/*",
+            "src": "templates/*",
             "use": "@vercel/static"
         },
         {
-            "src": "fortune/static/*/*",
+            "src": "static/*/*",
             "use": "@vercel/static"
         }
     ],
     "routes": [
         {
             "src": "/",
-            "dest": "/fortune/templates/index.html"
+            "dest": "app.py"
         },
         {
             "src": "/generate",
-            "dest": "/fortune/__init__.py"
+            "dest": "app.py"
         }
     ]
 }
