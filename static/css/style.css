@@ -14,8 +14,7 @@ body {
     height: 5%;
     width: 100%;
     background: #ff9595;
-    position: absolute;
-    /* z-index: 100; */
+    position: fixed;
 }
 
 .top {
@@ -30,6 +29,11 @@ body {
     margin-left: auto; margin-right: auto;
     margin-top: 10; margin-bottom: 10;
     max-width: 50vh;
+    max-height: 30vh;
+}
+
+.max-50 {
+    max-height: 50vh;
 }
 
 #banner {
@@ -40,7 +44,7 @@ body {
     width: 60%;
     border: 1px solid #ff476c;
 }
-#outImg::before{padding-left: 125%; display: block;}
+#outImg::before{padding-left: 133%; display: block;}
 
 #name-label {
     font: 18pt bold;

@@ -11,7 +11,7 @@
     <br><br><br>
     <div class="main-div"><img id="banner" src="static/img/banner.png"></div>
     <br>
-    <div class="main-div">
+    <div class="main-div max-50">
         <img src="static/img/alter.png" id="outImg"></canvas>
     </div>
     <br>
@@ -32,12 +32,15 @@
                 },
                 success: (result => {
                     console.log(result.message);
-                    document.getElementById("outImg").src = result.imgUrl;
+                    $("#outImg").attr("src", result.imgUrl);
+					$("#sub-btn").val('今日运势')
                 })
             })
 
         }</script>
+        <script>$("#sub-btn").click(()=>{$("#sub-btn").val('生成中…')})</script>
     </div>
+    <br><br>
 
     <div class="stripe bottom"></div>
 </body>
