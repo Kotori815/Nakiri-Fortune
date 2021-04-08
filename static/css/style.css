@@ -1,3 +1,10 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #ffe8e8;
     text-align: center;
@@ -7,9 +14,8 @@ body {
     height: 5%;
     width: 100%;
     background: #ff9595;
-    position: fixed;
-    left: 0;
-    z-index: 100;
+    position: absolute;
+    /* z-index: 100; */
 }
 
 .top {
@@ -36,7 +42,7 @@ body {
 }
 #outImg::before{padding-left: 125%; display: block;}
 
-.promt-label {
+#name-label {
     font: 18pt bold;
 }
 
@@ -56,3 +62,9 @@ body {
     width: 150pt; 
     text-align: center;
 }
+
+/* replacing cursor */
+body {cursor:url(../cursor/01_ayame.cur), auto;}
+#name-label {cursor:url(../cursor/01_ayame.cur), auto;}
+#sub-btn {cursor: url(../cursor/01_ayame_pointer.cur), auto;}
+#name-input {cursor: url(../cursor/01_ayame_text.cur), auto;}
