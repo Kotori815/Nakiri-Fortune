@@ -4,49 +4,31 @@ import json, os, random, io, base64
 
 RES_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "res")
 GOUTU_FOLDER = "goutu"
-
-BACKGROUND_FILE = "background.png"
-FORTUNE_FILE = "fortune.json"
-TEXT_FILE = "text.json"
 FONT_NAME = "ZhanKuKuaiLeTi2016XiuDingBan.ttf"
 
-FONT_SIZE_TITLE = 108
-FONT_SIZE_TEXT = 36
-POS_TITLE = (300,150)
-POS_TEXT_REF = (135,300)
-BOX_GOUTU = (275, 300, 525, 700)
+FONT_SIZE_TITLE = 54
+FONT_SIZE_TEXT = 18
+POS_TITLE = (150,75)
+POS_TEXT_REF = (67.5, 150)
+BOX_GOUTU = (137.5, 150, 262.5, 350)
 
-def readJson(file):
-    filename = os.path.join(RES_FOLDER, file)
-
-    if not os.path.exists(filename):
-        return [{'score': 0, 'name':'File {} Not Found'.format(filename)}]
-    with open(filename, 'r', encoding='utf-8') as f:
-        content = f.read()
-    content = json.loads(content)
-    return content
-
-def generateFortune(textFile, fortuneFile):
+def generateFortune(fortuneFile, textFile):
     result = dict()
     
-    allScore = readJson(fortuneFile)
-    fortune = random.choice(allScore)
+    fortune = random.choice(fortuneFile)
     score = fortune['score']
     result['name'] = fortune['name']
 
-    allText = readJson(textFile)
-    candidates = [entry for entry in allText if entry['score'] == score]
-    text = random.choice(candidates)
-    result['content'] = text['content']
+    text_list = textFile[fortune['name']]
+    result['content'] = random.choice(text_list)
 
     backgroundPath = os.path.join(RES_FOLDER, GOUTU_FOLDER)
     result['goutu'] = random.choice(os.listdir(backgroundPath))
 
     return result
 
-def drawImage(result):
-    base_img = Image.open(os.path.join(RES_FOLDER, BACKGROUND_FILE))
-    new = base_img.copy()
+def drawImage(background_img, result):
+    new = background_img.copy()
     draw = ImageDraw.Draw(new)
     # write title and text
     fnt_title = ImageFont.truetype(os.path.join(RES_FOLDER, FONT_NAME), size=FONT_SIZE_TITLE)

@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import json
+from PIL import Image
 
 from util import *
 
@@ -9,6 +10,24 @@ app.config.from_mapping(
 )
 app.jinja_env.auto_reload = True
 
+# defining global variable for re-use
+# general fortune telling data
+def readJson(file):
+    filename = os.path.join(RES_FOLDER, file)
+
+    if not os.path.exists(filename):
+        return [{'score': 0, 'name':'File {} Not Found'.format(filename)}]
+    with open(filename, 'r', encoding='utf-8') as f:
+        content = f.read()
+    content = json.loads(content)
+    return content
+
+FORTUNE_FILE = readJson("fortune.json")
+TEXT_FILE = readJson("text.json")
+# general background image 
+BACKGROUND_IMG = Image.open(os.path.join(RES_FOLDER, "background.png"))
+
+# defining api
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
@@ -17,8 +36,8 @@ def index():
 def generate():
     name = request.form['name']
 
-    fortune = generateFortune(TEXT_FILE, FORTUNE_FILE)
-    result = drawImage(fortune)
+    fortune = generateFortune(FORTUNE_FILE, TEXT_FILE)
+    result = drawImage(BACKGROUND_IMG, fortune)
     dataUrl = PILImage2Base64(result)
 
     return jsonify({'code': 0,
