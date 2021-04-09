@@ -14,9 +14,6 @@ app.jinja_env.auto_reload = True
 # general fortune telling data
 def readJson(file):
     filename = os.path.join(RES_FOLDER, file)
-
-    if not os.path.exists(filename):
-        return [{'score': 0, 'name':'File {} Not Found'.format(filename)}]
     with open(filename, 'r', encoding='utf-8') as f:
         content = f.read()
     content = json.loads(content)
@@ -35,10 +32,6 @@ def index():
 
 @app.route('/generate', methods=['POST'])
 def generate():
-    if len(request.form['name']):
-        with open("logger", "a", encoding="utf-8") as f:
-            f.write("username: {}\n".format(request.form['name']))
-
     fortune = generateFortune(FORTUNE_FILE, len(goutu_list), TEXT_FILE)
     result = drawImage(BACKGROUND_IMG, goutu_list[fortune['goutu']], fortune)
     dataUrl = PILImage2Base64(result)

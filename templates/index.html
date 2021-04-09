@@ -17,27 +17,21 @@
     </div>
     <br>
     <div class="main-div">
-        <div>
-            <label id="name-label">你的名字</label><br><br>
-            <input type="" name="name" id="name-input" size="10" maxlength="10" placeholder="开发中…"><br><br>
-            <input type="button" id='sub-btn' value='今日运势' onclick="submit()">
-        </div>
-        <script>function submit(){
-            var name = $("#name-input").val();
-            $.ajax({
-                type: "POST",
-                url: "/generate",
-                dataType: "json",
-                data: {
-                    "name": name
+    <input type="button" id='sub-btn' value='今日运势' onclick="submit()">
+    <script>function submit(){
+        $.ajax({
+            type: "POST",
+            url: "/generate",
+            dataType: "json",
+            data: {
+                "name": "none"
                 },
-                success: (result => {
-                    console.log(result.message);
-                    $("#outImg").attr("src", result.imgUrl);
-					$("#sub-btn").val('今日运势')
+            success: (result => {
+                console.log(result.message);
+                $("#outImg").attr("src", result.imgUrl);
+                $("#sub-btn").val('今日运势')
                 })
             })
-
         }</script>
         <script>$("#sub-btn").click(()=>{$("#sub-btn").val('生成中…')})</script>
     </div>
