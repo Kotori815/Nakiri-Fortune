@@ -6,7 +6,7 @@
 
 Access the project though this link: https://nakiri-fortune.vercel.app/
 
-![./assets/sample.png]()
+![](./assets/sample.png)
 
 ## Intro
 
