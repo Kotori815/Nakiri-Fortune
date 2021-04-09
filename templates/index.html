@@ -4,6 +4,7 @@
     <title>Nakiri Fortune</title>
     <link type="text/css" rel="stylesheet" href="static/css/style.css"/>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link rel="icon" href="static/img/favicon.ico"/>
 </html>
 <body>
     <div class="stripe top"></div>
@@ -18,7 +19,7 @@
     <div class="main-div">
         <div>
             <label id="name-label">你的名字</label><br><br>
-            <input type="" name="name" id="name-input" size="7" maxlength="7" placeholder="暂时没用"><br><br>
+            <input type="" name="name" id="name-input" size="10" maxlength="10" placeholder="开发中…"><br><br>
             <input type="button" id='sub-btn' value='今日运势' onclick="submit()">
         </div>
         <script>function submit(){
@@ -40,7 +41,13 @@
         }</script>
         <script>$("#sub-btn").click(()=>{$("#sub-btn").val('生成中…')})</script>
     </div>
+
+    <div></div>
+
     <br><br>
 
-    <div class="stripe bottom"></div>
+    <div class="stripe bottom">
+        <a href="https://github.com/Kotori815/Nakiri-Fortune">Github Source</a><br>
+        本网站仅基本功能完成，仍在完善中
+    </div>
 </body>

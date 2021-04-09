@@ -14,7 +14,7 @@ GOUTU_ANCHOR = (202.5, 385)     # middle-bottom
 
 # goutu / GOUTU refers to the paintings of nakiri-ayame
 
-def generateFortune(fortuneList, textDict):
+def generateFortune(fortuneList, goutu_num, textDict):
     """
     Randomly generate a fortune-telling result and refer to a goutu.
     """
@@ -27,11 +27,11 @@ def generateFortune(fortuneList, textDict):
     text_list = textDict[fortune['name']]
     result['content'] = random.choice(text_list)
     # random choose a goutu
-    result['goutu'] = random.choice(os.listdir(GOUTU_FOLDER))
+    result['goutu'] = random.randint(0, goutu_num-1)
 
     return result
 
-def drawImage(background_img, result):
+def drawImage(background_img, goutu, result):
     """
     Draw a fortune-telling card according to the result generated in last step.
     """
@@ -41,11 +41,9 @@ def drawImage(background_img, result):
     fnt_title = ImageFont.truetype(os.path.join(RES_FOLDER, FONT_NAME), size=FONT_SIZE_TITLE)
     draw.text(POS_TITLE, result['name'], fill="white", font=fnt_title, anchor="mm")
     # draw goutu
-    goutu = Image.open(os.path.join(GOUTU_FOLDER, result['goutu']))
     arr = np.array(goutu)
     mask = Image.fromarray(arr[:,:,3] != 0)
     w, h = goutu.size
-    print(result['goutu'], w, h)
     goutu_box = ((int)(GOUTU_ANCHOR[0] - w/2), (int)(GOUTU_ANCHOR[1] - h), (int)(GOUTU_ANCHOR[0] + w/2), (int)(GOUTU_ANCHOR[1]))
     new.paste(goutu, box=goutu_box, mask=mask)
     # write text

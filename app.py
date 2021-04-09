@@ -26,6 +26,7 @@ FORTUNE_FILE = readJson("fortune.json")
 TEXT_FILE = readJson("text.json")
 # general background image 
 BACKGROUND_IMG = Image.open(os.path.join(RES_FOLDER, "background.png"))
+goutu_list = [Image.open(os.path.join(GOUTU_FOLDER, goutu)) for goutu in os.listdir(GOUTU_FOLDER)]
 
 # defining api
 @app.route('/', methods=['GET'])
@@ -34,10 +35,12 @@ def index():
 
 @app.route('/generate', methods=['POST'])
 def generate():
-    name = request.form['name']
+    if len(request.form['name']):
+        with open("logger", "a", encoding="utf-8") as f:
+            f.write("username: {}\n".format(request.form['name']))
 
-    fortune = generateFortune(FORTUNE_FILE, TEXT_FILE)
-    result = drawImage(BACKGROUND_IMG, fortune)
+    fortune = generateFortune(FORTUNE_FILE, len(goutu_list), TEXT_FILE)
+    result = drawImage(BACKGROUND_IMG, goutu_list[fortune['goutu']], fortune)
     dataUrl = PILImage2Base64(result)
 
     return jsonify({'code': 0,
