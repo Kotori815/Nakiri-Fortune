@@ -3,45 +3,66 @@ import numpy as np
 import json, os, random, io, base64
 
 RES_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "res")
-GOUTU_FOLDER = "goutu"
+GOUTU_FOLDER = os.path.join(RES_FOLDER, "goutu")
 FONT_NAME = "ZhanKuKuaiLeTi2016XiuDingBan.ttf"
 
-FONT_SIZE_TITLE = 54
-FONT_SIZE_TEXT = 18
-POS_TITLE = (150,75)
-POS_TEXT_REF = (67.5, 150)
-BOX_GOUTU = (137.5, 150, 262.5, 350)
+FONT_SIZE_TITLE = 54    #pt
+FONT_SIZE_TEXT = 18     #pt
+POS_TITLE = (150,75)            # middle-middle        
+POS_TEXT_REF = (67.5, 150)      # middle-top
+GOUTU_ANCHOR = (202.5, 385)     # middle-bottom
 
-def generateFortune(fortuneFile, textFile):
+# goutu / GOUTU refers to the paintings of nakiri-ayame
+
+def generateFortune(fortuneList, textDict):
+    """
+    Randomly generate a fortune-telling result and refer to a goutu.
+    """
     result = dict()
-    
-    fortune = random.choice(fortuneFile)
+    # random choose fortune level
+    fortune = random.choice(fortuneList)
     score = fortune['score']
     result['name'] = fortune['name']
-
-    text_list = textFile[fortune['name']]
+    # random choose text for the level
+    text_list = textDict[fortune['name']]
     result['content'] = random.choice(text_list)
-
-    backgroundPath = os.path.join(RES_FOLDER, GOUTU_FOLDER)
-    result['goutu'] = random.choice(os.listdir(backgroundPath))
+    # random choose a goutu
+    result['goutu'] = random.choice(os.listdir(GOUTU_FOLDER))
 
     return result
 
 def drawImage(background_img, result):
+    """
+    Draw a fortune-telling card according to the result generated in last step.
+    """
     new = background_img.copy()
     draw = ImageDraw.Draw(new)
-    # write title and text
+    # write title
     fnt_title = ImageFont.truetype(os.path.join(RES_FOLDER, FONT_NAME), size=FONT_SIZE_TITLE)
     draw.text(POS_TITLE, result['name'], fill="white", font=fnt_title, anchor="mm")
+    # draw goutu
+    goutu = Image.open(os.path.join(GOUTU_FOLDER, result['goutu']))
+    arr = np.array(goutu)
+    mask = Image.fromarray(arr[:,:,3] != 0)
+    w, h = goutu.size
+    print(result['goutu'], w, h)
+    goutu_box = ((int)(GOUTU_ANCHOR[0] - w/2), (int)(GOUTU_ANCHOR[1] - h), (int)(GOUTU_ANCHOR[0] + w/2), (int)(GOUTU_ANCHOR[1]))
+    new.paste(goutu, box=goutu_box, mask=mask)
+    # write text
     fnt_text = ImageFont.truetype(os.path.join(RES_FOLDER, FONT_NAME), size=FONT_SIZE_TEXT)
     new_text = textTranspose(result['content'])
     w, _ = draw.textsize(new_text, font=fnt_text)
     pos_text = (POS_TEXT_REF[0] - w/2, POS_TEXT_REF[1])
     draw.multiline_text(pos_text, new_text, fill="black", font=fnt_text)
-    
+
     return new
 
 def textTranspose(text):
+    """
+    Transpose the multi-line text.\n
+    e.g. 'abc\n123' => 'a 1\nb 2\nc 3'\n
+    PIL need extra library to change the direction of text, and with this process we can ignore it.
+    """
     text = text.split()
     text.reverse()
 
@@ -54,6 +75,9 @@ def textTranspose(text):
     return result
 
 def PILImage2Base64(image):
+    """
+    Encode PIL image to base64 data url for https transmission
+    """
     outputBuffer = io.BytesIO()
     image.save(outputBuffer, format='PNG')
     byteData = outputBuffer.getvalue()
