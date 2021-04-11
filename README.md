@@ -1,26 +1,27 @@
-# Nakiri Forture
+# 百鬼神社 Nakiri Forture
 
-*A try of HTML-CSS-JS website design and [Flask](https://flask.palletsprojects.com/en/1.1.x/) back-end development.*
+练习作：HTML-CSS-JS网页设计与基于[Flask](https://flask.palletsprojects.com/en/1.1.x/)框架的后端开发
 
-## Link
+## 使用
 
-Access the project though this link: https://nakiri-fortune.vercel.app/
+服务部署于vercal，请通过以下链接访问 https://nakiri-fortune.vercel.app/
 
-![./assets/sample.png]()
+## 简介
 
-## Intro
+点击按钮生成一张运势卡片，以虚拟主播[百鬼绫目/百鬼あやめ](https://www.youtube.com/channel/UC7fk0CB07ly8oSl0aqKkqFg)为主题。（她真可爱.jpg)
 
-The web application randomly generates a fortune-telling image which is in a theme based on [Nakiri Ayame](https://www.youtube.com/channel/UC7fk0CB07ly8oSl0aqKkqFg) the Vtuber (she is really cute). 
+![一个示例](./assets/sample.png)
 
-This project is inspired by the **Vortune** plug-in from [NoneBot](https://github.com/fz6m/nonebot-plugin), a QQ-group bot project which is now suspended due to updated Tencent policies. The service is deployed on Vercel.
+本项目灵感来自现已停止运营的QQ群机器人[NoneBot](https://github.com/fz6m/nonebot-plugin)的V运势（Vortune）插件。服务部署于Vercel.
 
-## Plan
+## 计划
+
+本项目基本功能已完成。
 
 - Finished:
-    - Fore/back-end structure
-    - Vercel serverless deployment
-    - Art design (awful)
+    - 前后端开发
+    - 服务部署
+    - （弱弱）美工
 - To do:
-    - Re-creation of the text resources (since the current ones are just simplified copies of Vortune resources)
-    - Better art resource? (If only I have time and liver)
-
+    - 竖排文字显示bug（急急急）
+    - 丰富资源
