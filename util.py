@@ -12,6 +12,8 @@ POS_TITLE = (150,75)            # middle-middle
 POS_TEXT_REF = (67.5, 150)      # middle-top
 GOUTU_ANCHOR = (202.5, 385)     # middle-bottom
 
+PROB_DIST = [0.05, 0.18, 0.18, 0.18, 0.18, 0.18, 0.05]
+
 # goutu / GOUTU refers to the paintings of nakiri-ayame
 
 def generateFortune(fortuneList, goutu_num, textDict):
@@ -20,7 +22,7 @@ def generateFortune(fortuneList, goutu_num, textDict):
     """
     result = dict()
     # random choose fortune level
-    fortune = random.choice(fortuneList)
+    fortune = np.random.choice(fortuneList, p=PROB_DIST)
     score = fortune['score']
     result['name'] = fortune['name']
     # random choose text for the level
@@ -66,9 +68,12 @@ def textTranspose(text):
 
     max_len = max([len(i) for i in text], default=0)
     r_text = ["" for _ in range(max_len)]
-    for i in text:
-        for k,char in enumerate(i):
-            r_text[k] += (" " + char)
+    for i in range(max_len):
+        for t in text:
+            if len(t) >= i+1:
+                r_text[i] += (" " + t[i])
+            else:
+                r_text[i] += "   "
     result = "\n".join(r_text)
     return result
 
