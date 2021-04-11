@@ -7,6 +7,8 @@
 服务部署于vercal，请通过以下链接访问 https://nakiri-fortune.vercel.app/
 
 ## 简介
+=======
+![](./assets/sample.png)
 
 点击按钮生成一张运势卡片，以虚拟主播[百鬼绫目/百鬼あやめ](https://www.youtube.com/channel/UC7fk0CB07ly8oSl0aqKkqFg)为主题。（她真可爱.jpg)
 
